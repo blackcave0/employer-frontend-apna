@@ -69,7 +69,7 @@ const HeroSection = () => {
             <div className="relative z-10">
               <div className="text-start mb-8">
                 <h2 className="text-2xl font-bold mb-2  text-white">
-                  Let's Get Started
+                  Let&apos;s Get Started
                 </h2>
                 <p className="text-white/70 text-sm">Join thousands of employers</p>
               </div>

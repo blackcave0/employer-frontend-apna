@@ -5,7 +5,7 @@ import Image from 'next/image';
 const TalentPlaybook = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +18,7 @@ const TalentPlaybook = () => {
 
       // Check if element is in viewport
       const isInViewport = elementTop < windowHeight && elementTop + elementHeight > 0;
-      setIsVisible(isInViewport);
+      // setIsVisible(isInViewport);
 
       if (isInViewport) {
         // Calculate scroll progress relative to element
@@ -79,7 +79,7 @@ const TalentPlaybook = () => {
 
               <p className="text-gray-600 text-lg leading-relaxed max-w-md">
                 Insights from 140+ People & Talent Leaders on hiring, engaging,
-                and retaining India's largest workforce generation
+                and retaining India&apos;s largest workforce generation
               </p>
             </div>
 
@@ -121,7 +121,7 @@ const TalentPlaybook = () => {
                     <p className="text-sm opacity-90">
                       Insights from 140+ People &
                       Talent Leaders on hiring, engaging &
-                      retaining India's largest workforce
+                      retaining India&apos;s largest workforce
                       generation
                     </p>
                   </div>
@@ -129,7 +129,7 @@ const TalentPlaybook = () => {
                   {/* Bottom details */}
                   <div className="space-y-1">
                     <p className="text-sm font-semibold">
-                      Nation's Leading<br />
+                      Nation&apos;s Leading<br />
                       Community
                     </p>
                     <p className="text-xs opacity-80">

@@ -1,6 +1,7 @@
 // components/Header.js
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { MoveUpRight } from 'lucide-react';
 import SparkleAnimation from '../components/SparkleAnimation';
 // import rotbotIcon from '../icons/robotIcon.svg'
@@ -27,7 +28,7 @@ const Header = () => {
                       <div className="space-y-3 space-x-7">
                         <Link href="#" className="block hover:text-purple-600 font-medium flex items-start space-x-3">
                           <div className="flex-shrink-0 mt-1 bg-[#5409DA] rounded-full p-3 flex-shrink-0 relative overflow-hidden" >
-                            <img src='/robotIcon.svg' alt="AI Calling Agent" className="w-6 h-6 relative z-10" />
+                            <Image src='/robotIcon.svg' alt="AI Calling Agent" width={24} height={24} className="relative z-10" />
                             {/* Sparkle animations */}
                             <SparkleAnimation />
                           </div>
@@ -39,7 +40,7 @@ const Header = () => {
 
                         <Link href="#" className="block hover:text-purple-600 font-medium flex items-start space-x-3">
                           <div className="flex-shrink-0 mt-1 bg-[#FF3F33] rounded-full p-3 flex-shrink-0 relative overflow-hidden" >
-                            <img src='/jobIcon.svg' alt="AI Calling Agent" className="w-6 h-6 relative z-10" />
+                            <Image src='/jobIcon.svg' alt="AI Calling Agent" width={24} height={24} className="relative z-10" />
                             {/* Sparkle animations */}
                             <SparkleAnimation />
                           </div>
@@ -51,7 +52,7 @@ const Header = () => {
 
                         <Link href="#" className="block hover:text-purple-600 font-medium flex items-start space-x-3">
                           <div className="flex-shrink-0 mt-1 bg-[#191825] rounded-full p-3 flex-shrink-0 relative overflow-hidden" >
-                            <img src='/databaseIcon.svg' alt="AI Calling Agent" className="w-6 h-6 relative z-10" />
+                            <Image src='/databaseIcon.svg' alt="AI Calling Agent" width={24} height={24} className="relative z-10" />
                             {/* Sparkle animations */}
                             <SparkleAnimation />
                           </div>
@@ -63,7 +64,7 @@ const Header = () => {
 
                         <Link href="#" className="block hover:text-purple-600 font-medium flex items-start space-x-3">
                           <div className="flex-shrink-0 mt-1 bg-[#E18237] rounded-full p-3 flex-shrink-0 relative overflow-hidden" >
-                            <img src='/campusAiIcon.svg' alt="AI Calling Agent" className="w-6 h-6 relative z-10" />
+                            <Image src='/campusAiIcon.svg' alt="AI Calling Agent" width={24} height={24} className="relative z-10" />
                             {/* Sparkle animations */}
                             <SparkleAnimation />
                           </div>
@@ -103,7 +104,7 @@ const Header = () => {
                     </div>
                     <div className="w-4/2 p-6 bg-[#F9CB99] rounded-r-lg">
                       <div className="text-center">
-                        <img src="/api/placeholder/150/100" alt="Product Demo" className="w-full h-24 object-cover rounded mb-3" />
+                        <Image src="/api/placeholder/150/100" alt="Product Demo" width={150} height={100} className="w-full h-24 object-cover rounded mb-3" />
                         <p className="text-sm text-gray-600 mb-3">Discover how our platform can transform your hiring process</p>
                         <button className="bg-purple-600 text-white px-4 py-2 rounded text-sm hover:bg-purple-700 transition-colors">
                           Watch Video

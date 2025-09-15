@@ -17,7 +17,7 @@ export default function LoginForm() {
     <div className="flex items-center justify-center min-h-screen bg-gray-800">
       <div className="w-full max-w-md p-8 space-y-6 bg-[#212a3b] rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white">Let's get started</h1>
+          <h1 className="text-3xl font-bold text-white">Let&apos;s get started</h1>
           <p className="text-white">Hire top talent faster with apna</p>
         </div>
 

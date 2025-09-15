@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Header from "./home/header";
+// import Image from "next/image";
+// import Header from "./home/header";
 import HeroSection from "./home/HeroSection";
-import StatsSection from "./home/StatsSection";
+// import StatsSection from "./home/StatsSection";
 import TrustedBySection from "./home/TrustedBySection";
 import SinglePlatform from "./home/SinglePlatform";
 import Footer from "./home/Footer";

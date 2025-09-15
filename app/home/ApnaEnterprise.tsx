@@ -27,7 +27,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, position 
 
 const ApnaEnterprise: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [scrollY, setScrollY] = useState(0);
+  // const [scrollY, setScrollY] = useState(0);
   const [scale, setScale] = useState(1);
 
   useEffect(() => {

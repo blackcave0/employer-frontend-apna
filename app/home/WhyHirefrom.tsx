@@ -238,7 +238,7 @@ const WhyHirefrom = () => {
           {/* Testimonial Content */}
           <div className="space-y-6">
             <blockquote className="text-xl md:text-2xl font-bold text-gray-900 leading-relaxed">
-              "{testimonials[currentTestimonial].quote}"
+              &quot;{testimonials[currentTestimonial].quote}&quot;
             </blockquote>
 
             {/* Navigation Dots */}
