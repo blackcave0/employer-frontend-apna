@@ -37,9 +37,9 @@ const AskedQuestions: React.FC<AskedQuestionsProps> = ({ className = "" }) => {
   };
 
   return (
-    <section className={`py-16 bg-gray-50 ${className}`}>
-      <div className="container mx-auto px-4 max-w-6xl">
-        <h2 className="text-4xl font-bold text-gray-800 mb-12">
+    <section className={`py-8 sm:py-12 md:py-16 bg-gray-50 ${className}`}>
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-8 sm:mb-10 md:mb-12">
           Frequently asked questions
         </h2>
 
@@ -47,17 +47,17 @@ const AskedQuestions: React.FC<AskedQuestionsProps> = ({ className = "" }) => {
           {faqData.map((faq, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 ease-in-out">
               <button
-                className="w-full px-6 py-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-all duration-300 ease-in-out cursor-pointer"
+                className="w-full px-4 sm:px-6 py-4 sm:py-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-all duration-300 ease-in-out cursor-pointer"
                 onClick={() => toggleAccordion(index)}
                 aria-expanded={openIndex === index}
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-gray-800 pr-4 transition-all duration-300 ease-in-out">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800 pr-4 transition-all duration-300 ease-in-out">
                     {faq.question}
                   </h3>
                   <div className="flex-shrink-0">
                     <svg
-                      className={`w-6 h-6 text-gray-600 transition-all duration-300 ease-in-out ${openIndex === index ? 'transform rotate-180' : ''
+                      className={`w-5 h-5 sm:w-6 sm:h-6 text-gray-600 transition-all duration-300 ease-in-out ${openIndex === index ? 'transform rotate-180' : ''
                         }`}
                       fill="none"
                       stroke="currentColor"
@@ -79,7 +79,7 @@ const AskedQuestions: React.FC<AskedQuestionsProps> = ({ className = "" }) => {
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
                   }`}
               >
-                <div className="px-6 pb-6 text-gray-600 leading-relaxed transition-all duration-300 ease-in-out">
+                <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-gray-600 leading-relaxed transition-all duration-300 ease-in-out">
                   {faq.answer}
                 </div>
               </div>

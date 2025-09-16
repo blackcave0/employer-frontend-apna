@@ -1,3 +1,5 @@
+'use client';
+
 // components/HeroSection.js
 import React from 'react';
 import Image from 'next/image';
@@ -8,60 +10,55 @@ import Header from './header';
 
 const HeroSection = () => {
   return (
-    <section className="bg-purple-gradient text-black pb-16 px-16 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("https://framerusercontent.com/images/ibJ0g0Ir3S8FokflvVvOkdCQo.png?scale-down-to=2048&width=2880&height=1302")' }}>
+    <section className="bg-purple-gradient text-black pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-8 lg:px-16 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("https://framerusercontent.com/images/ibJ0g0Ir3S8FokflvVvOkdCQo.png?scale-down-to=2048&width=2880&height=1302")' }}>
       <Header />
 
-      <div className="container mx-auto py-16 px-4 flex flex-col md:flex-row items-center text-white">
-        <div className="md:w-1/1 mb-8 md:mb-0 flex flex-col">
-          <div className="flex flex-col md:flex-row items-center mb-8">
-            <div className="md:w-1/3 mb-6 md:mb-0 md:mr-6">
+      <div className="container mx-auto py-6 xs:py-8 sm:py-12 lg:py-16 px-2 xs:px-4 flex flex-col lg:flex-row items-center text-white">
+        <div className="w-full lg:w-1/2 mb-8 lg:mb-0 flex flex-col">
+          <div className="flex flex-col sm:flex-row items-center mb-6 sm:mb-8">
+            <div className="w-full sm:w-1/3 mb-4 sm:mb-0 sm:mr-6 flex justify-center sm:justify-start">
               <Image
                 src="https://framerusercontent.com/images/9Q1hdG7uJjhDT9SeHjN2Qg5s.png?width=206&height=370"
                 alt="Recruitment team illustration"
                 width={200}
                 height={200}
-                className=""
+                className="w-98 h-98 xs:w-72 xs:h-72 sm:w-70 sm:h-70 md:w-78 md:h-78 lg:w-96 lg:h-96 xl:w-94 xl:h-94 object-contain"
               />
             </div>
-            <div className="md:w-1/1 md:mt-16 text-center md:text-left">
-              <h1 className="text-3xl md:text-3xl font-bold mb-4  leading-tight">
-                Hire your <br /> next great team with apna
+            <div className="w-full sm:w-2/3 sm:mt-8 lg:mt-16 text-center sm:text-left">
+              <h1 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 leading-tight px-2 sm:px-0">
+                Hire your <br className="hidden sm:block" /> next great team with apna
               </h1>
-              <p className="mb-6 leading-relaxed max-w-md">
+              <p className="mb-4 sm:mb-6 leading-relaxed max-w-md text-sm sm:text-base px-2 sm:px-0">
                 Streamline your recruitment with AI-driven precision. Single solution from fresher to experienced hiring.
               </p>
-              <Link href="#" className="text-teal-500 font-semibold flex items-center justify-center md:justify-start">
-                <span className="material-icons mr-2"><CirclePlay /></span>
+              <Link href="#" className="text-teal-500 font-semibold flex items-center justify-center sm:justify-start text-sm sm:text-base px-2 sm:px-0">
+                <span className="mr-2"><CirclePlay className="w-4 h-4 sm:w-5 sm:h-5" /></span>
                 Watch video
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-extrabold mb-2">6 Crore +</h3>
-              <p className="text-sm opacity-90">Qualified candidates</p>
+          <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 xs:gap-4 sm:gap-6 mt-6 sm:mt-8 px-2 sm:px-0">
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-extrabold mb-1 sm:mb-2">6 Crore +</h3>
+              <p className="text-xs sm:text-sm opacity-90">Qualified candidates</p>
             </div>
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-extrabold mb-2">7
-                Lakh +</h3>
-              <p className="text-sm opacity-90"> Employers use apna
-
-              </p>
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-extrabold mb-1 sm:mb-2">7 Lakh +</h3>
+              <p className="text-xs sm:text-sm opacity-90">Employers use apna</p>
             </div>
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-extrabold mb-2">900
-                +</h3>
-              <p className="text-sm opacity-90"> Available cities
-
-              </p>
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-extrabold mb-1 sm:mb-2">900 +</h3>
+              <p className="text-xs sm:text-sm opacity-90">Available cities</p>
             </div>
           </div>
         </div>
 
 
-        <div className="md:w-2/3 flex justify-center ">
-          <div className="backdrop-blur-xl bg-white/10 border border-white/20 text-white py-8 px-6 rounded-xl shadow-2xl w-full max-w-lg relative overflow-hidden">
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+          {/* Desktop form - hidden on mobile */}
+          <div className="hidden lg:block backdrop-blur-xl bg-white/10 border border-white/20 text-white py-8 px-6 rounded-xl shadow-2xl w-full max-w-lg relative overflow-hidden">
             {/* Animated background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-teal-500/10 pointer-events-none"></div>
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-teal-400/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -127,6 +124,33 @@ const HeroSection = () => {
                     </p>
                   </div>
 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile login button - shown only on mobile */}
+          <div className="lg:hidden w-full max-w-sm mx-auto px-4">
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 text-white py-6 px-4 sm:px-6 rounded-xl shadow-2xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-teal-500/10 pointer-events-none"></div>
+              <div className="relative z-10 text-center">
+                <h2 className="text-lg xs:text-xl font-bold mb-2 text-white">
+                  Ready to hire?
+                </h2>
+                <p className="text-white/70 text-sm mb-4 sm:mb-6">Join thousands of employers</p>
+                <button
+                  onClick={() => window.open('/signin/?redirectionSource=Homepage-login', '_blank')}
+                  className="w-full relative overflow-hidden text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:cursor-pointer transition-all duration-300 group"
+                  style={{ backgroundColor: '#1f8268' }}
+                >
+                  <span className="relative z-10 text-sm sm:text-base">Login / Sign Up</span>
+                </button>
+
+                <div className="mt-4 sm:mt-6 text-center">
+                  <Link href="/enterprise-login" className="text-white-400 hover:text-teal-300 transition-colors font-medium underline text-xs sm:text-sm flex justify-center items-center gap-2">
+                    <Building2 className='h-3 w-3 sm:h-4 sm:w-4' />
+                    Enterprise login
+                  </Link>
                 </div>
               </div>
             </div>

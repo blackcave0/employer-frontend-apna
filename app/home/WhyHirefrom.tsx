@@ -179,87 +179,113 @@ const WhyHirefrom = () => {
   };
 
   return (
-    <div className="bg-white py-16 px-16 ">
+    <div className="bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 sm:mb-14 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Why hire from apna?
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-4xl mx-auto px-4">
             From startups to SMEs to established enterprises, Apna revolutionizes the way businesses find high-quality talent quickly & effortlessly.
           </p>
         </div>
 
         {/* Statistics Section */}
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {currentStats.map((stat, index) => (
-            <div key={index} className="text-center p-6 relative">
-              {index < currentStats.length - 1 && (
-                <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-gray-600"></div>
-              )}
-              <div className="mb-4">
-                {stat.highlight ? (
-                  <div className="text-3xl md:text-4xl font-bold text-green-600">
-                    Upto <span className="text-green-600">{animatedStats[index]}X</span>
-                  </div>
-                ) : index === 0 ? (
-                  <div className="text-3xl md:text-4xl font-bold text-green-600">
-                    {animatedStats[index]} {stat.unit}
-                  </div>
-                ) : (
-                  <div className="text-3xl md:text-4xl font-bold text-green-600">
-                    {animatedStats[index]}{stat.unit}
-                  </div>
-                )}
+        <div ref={sectionRef} className="mb-16 sm:mb-18 md:mb-20">
+          {/* Mobile Layout - Vertical Stack */}
+          <div className="lg:hidden space-y-6 sm:space-y-8 max-w-2xl">
+            {currentStats.map((stat, index) => (
+              <div key={index} className="border-l-4 border-gray-300 pl-6">
+                <div className="mb-2">
+                  {stat.highlight ? (
+                    <div className="text-3xl sm:text-4xl font-bold text-green-600">
+                      Upto <span className="text-green-600">{animatedStats[index]}X</span>
+                    </div>
+                  ) : index === 0 ? (
+                    <div className="text-3xl sm:text-4xl font-bold text-green-600">
+                      {animatedStats[index]} {stat.unit}
+                    </div>
+                  ) : (
+                    <div className="text-3xl sm:text-4xl font-bold text-green-600">
+                      {animatedStats[index]}{stat.unit}
+                    </div>
+                  )}
+                </div>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                  {stat.description}
+                </p>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                {stat.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Desktop Layout - Grid */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-8">
+            {currentStats.map((stat, index) => (
+              <div key={index} className="text-center p-6 relative">
+                {index < currentStats.length - 1 && (
+                  <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-gray-600"></div>
+                )}
+                <div className="mb-4">
+                  {stat.highlight ? (
+                    <div className="text-3xl md:text-4xl font-bold text-green-600">
+                      Upto <span className="text-green-600">{animatedStats[index]}X</span>
+                    </div>
+                  ) : index === 0 ? (
+                    <div className="text-3xl md:text-4xl font-bold text-green-600">
+                      {animatedStats[index]} {stat.unit}
+                    </div>
+                  ) : (
+                    <div className="text-3xl md:text-4xl font-bold text-green-600">
+                      {animatedStats[index]}{stat.unit}
+                    </div>
+                  )}
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {stat.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Testimonial Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2  items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Testimonial Image */}
-          <div className="relative">
-            <div className="relative w-3/5 h-[350px] mx-auto">
+          <div className="relative order-2 lg:order-1">
+            <div className="relative w-4/5 sm:w-3/5 h-[250px] sm:h-[300px] md:h-[350px] mx-auto">
               <Image
                 src={testimonials[currentTestimonial].image}
                 alt={testimonials[currentTestimonial].author}
                 fill
                 className="object-cover object-center rounded-lg"
-                sizes="(max-width: 768px) 75vw, (max-width: 1200px) 37.5vw, 25vw"
+                sizes="(max-width: 640px) 80vw, (max-width: 768px) 60vw, (max-width: 1200px) 37.5vw, 25vw"
               />
             </div>
           </div>
 
           {/* Testimonial Content */}
-          <div className="space-y-6">
-            <blockquote className="text-xl md:text-2xl font-bold text-gray-900 leading-relaxed">
+          <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
+            <blockquote className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-relaxed">
               &quot;{testimonials[currentTestimonial].quote}&quot;
             </blockquote>
 
-            {/* Navigation Dots */}
-
-
             {/* Author Info */}
             <div className="pt-4 border-t border-gray-200">
-              <div className="font-bold text-gray-900 text-lg">
+              <div className="font-bold text-gray-900 text-base sm:text-lg">
                 {testimonials[currentTestimonial].author}
               </div>
-              <div className="text-gray-600 text-sm font-bold mb-4">
+              <div className="text-gray-600 text-sm font-bold mb-3 sm:mb-4">
                 {testimonials[currentTestimonial].position}
               </div>
               <div className="flex items-center">
-                <div className="w-24 h-8 relative">
+                <div className="w-20 sm:w-24 h-6 sm:h-8 relative">
                   <Image
                     src={testimonials[currentTestimonial].logo}
                     alt={testimonials[currentTestimonial].company}
                     fill
                     className="object-contain object-left"
-                    sizes="96px"
+                    sizes="(max-width: 640px) 80px, 96px"
                   />
                 </div>
               </div>
@@ -270,17 +296,17 @@ const WhyHirefrom = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-8 h-1 transition-colors duration-300 ${index === currentTestimonial ? 'bg-green-600' : 'bg-gray-300 hover:bg-gray-400'
+                  className={`w-6 sm:w-8 h-1 transition-colors duration-300 ${index === currentTestimonial ? 'bg-green-600' : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                   aria-label={`View testimonial ${index + 1}`}
                 />
               ))}
               <button
                 onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
-                className="ml-4 p-2 hover:bg-gray-100 transition-colors duration-300 group"
+                className="ml-3 sm:ml-4 p-2 hover:bg-gray-100 transition-colors duration-300 group"
                 aria-label="Next testimonial"
               >
-                <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
               </button>
             </div>
           </div>

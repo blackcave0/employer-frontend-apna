@@ -1,6 +1,5 @@
 'use client'
 import React, { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
 
 const TalentPlaybook = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -13,22 +12,31 @@ const TalentPlaybook = () => {
 
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const elementTop = rect.top;
-      const elementHeight = rect.height;
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const sectionBottom = sectionTop + sectionHeight;
 
-      // Check if element is in viewport
-      const isInViewport = elementTop < windowHeight && elementTop + elementHeight > 0;
-      // setIsVisible(isInViewport);
+      // Calculate if section is in viewport
+      const isInViewport = sectionTop < windowHeight && sectionBottom > 0;
 
       if (isInViewport) {
-        // Calculate scroll progress relative to element
-        const scrollProgress = Math.max(0, Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight)));
+        // Calculate the center position of the viewport
+        const viewportCenter = windowHeight / 2;
+        const sectionCenter = sectionTop + sectionHeight / 2;
 
-        // Scale range: 0.8 to 1.2 based on scroll progress
-        // When scrolling down (progress increases): zoom in (scale increases)
-        // When scrolling up (progress decreases): zoom out (scale decreases)
-        const newScale = 0.8 + (scrollProgress * 0.4);
-        setScale(newScale);
+        // Calculate distance from section center to viewport center
+        const distanceFromCenter = Math.abs(viewportCenter - sectionCenter);
+        const maxDistance = windowHeight / 2 + sectionHeight / 2;
+
+        // Normalize distance (0 = centered, 1 = far from center)
+        const normalizedDistance = Math.min(distanceFromCenter / maxDistance, 1);
+
+        // Calculate scale: 1.0 when centered, 0.95 when far
+        const newScale = 1.0 - (normalizedDistance * 0.05);
+        setScale(Math.max(0.95, Math.min(1.0, newScale)));
+      } else {
+        // Reset scale when out of viewport
+        setScale(0.95);
       }
     };
 
@@ -62,7 +70,7 @@ const TalentPlaybook = () => {
         ref={sectionRef}
         style={{
           transform: `scale(${scale})`,
-          transition: 'transform 0.1s ease-out'
+          transition: 'transform 0.3s ease-out'
         }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

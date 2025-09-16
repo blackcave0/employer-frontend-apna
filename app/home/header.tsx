@@ -1,28 +1,40 @@
+'use client'
 // components/Header.js
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MoveUpRight } from 'lucide-react';
+import { MoveUpRight, Menu, X } from 'lucide-react';
 import SparkleAnimation from '../components/SparkleAnimation';
 // import rotbotIcon from '../icons/robotIcon.svg'
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleProductDropdown = () => {
+    setIsProductDropdownOpen(!isProductDropdownOpen);
+  };
+
   return (
     <header className="bg-purple-dark text-white sticky top-0 z-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3">
-          <div className="flex items-center space-x-8">
-            <Link href="#" className="text-2xl font-bold">apnaLOGO</Link>
-            <nav className="hidden md:flex items-center space-x-6">
+          <div className="flex items-center space-x-4 lg:space-x-8">
+            <Link href="#" className="text-xl sm:text-2xl font-bold whitespace-nowrap">apnaLOGO</Link>
+            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
               {/* Product dropdown */}
               <div className="relative group">
-                <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-3 py-2 rounded flex items-center transition-all duration-300">
+                <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-2 xl:px-3 py-2 rounded flex items-center transition-all duration-300 text-sm xl:text-base">
                   Product
                   <svg className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </Link>
-                <div className="absolute top-full left-0 mt-2 w-[40rem] bg-white text-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="absolute top-full left-0 mt-2 w-[90vw] max-w-[40rem] bg-white text-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="flex">
                     <div className="w-4/1 p-6">
                       <div className="space-y-3 space-x-7">
@@ -117,23 +129,98 @@ const Header = () => {
 
 
               {/* <Link href="#" className="hover:text-gray-300">Jobs</Link> */}
-              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-3 py-2 rounded transition-all duration-300">Enterprise</Link>
-              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-3 py-2 rounded transition-all duration-300">Blogs</Link>
-              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-3 py-2 rounded transition-all duration-300">Pricing</Link>
-              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-3 py-2 rounded transition-all duration-300"><span className='flex'>Looking for a job <MoveUpRight className='ml-1 w-5 h-5' /></span></Link>
+              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-2 xl:px-3 py-2 rounded transition-all duration-300 text-sm xl:text-base">Enterprise</Link>
+              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-2 xl:px-3 py-2 rounded transition-all duration-300 text-sm xl:text-base">Blogs</Link>
+              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-2 xl:px-3 py-2 rounded transition-all duration-300 text-sm xl:text-base">Pricing</Link>
+              <Link href="#" className="hover:text-gray-300 hover:bg-gray-700 px-2 xl:px-3 py-2 rounded transition-all duration-300 text-sm xl:text-base whitespace-nowrap"><span className='flex items-center'>Looking for a job <MoveUpRight className='ml-1 w-4 h-4' /></span></Link>
 
             </nav>
           </div>
-          <div className="flex items-center space-x-4">
-            <Link href="#" className="hover:text-gray-300 border rounded font-medium px-6 py-2">Contact us</Link>
-            <Link href="#" className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <Link href="#" className="hidden md:block hover:text-gray-300 border rounded font-medium px-3 lg:px-6 py-2 text-sm lg:text-base whitespace-nowrap">Contact us</Link>
+            <Link href="#" className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-3 sm:px-4 rounded text-sm lg:text-base whitespace-nowrap">
               Login/Sign up
             </Link>
-            <button className="md:hidden text-white">
-              <span className="material-icons">menu</span>
+            <button
+              onClick={toggleMobileMenu}
+              className="lg:hidden text-white p-2 hover:bg-gray-700 rounded transition-colors"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-purple-dark border-t border-gray-600">
+            <div className="px-4 py-4 space-y-4">
+              {/* Mobile Product Menu */}
+              <div>
+                <button
+                  onClick={toggleProductDropdown}
+                  className="w-full flex justify-between items-center text-left hover:text-gray-300 py-2 text-base font-medium"
+                >
+                  Product
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-300 ${isProductDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isProductDropdownOpen && (
+                  <div className="mt-2 pl-4 space-y-3 border-l-2 border-gray-600">
+                    <Link href="#" className="block hover:text-gray-300 py-2">
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 bg-[#5409DA] rounded-full p-2">
+                          <Image src='/robotIcon.svg' alt="AI Agent" width={16} height={16} />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-sm">AI Calling Agent</span>
+                          <span className="block text-xs text-gray-300 mt-1">Automate outreach</span>
+                        </div>
+                      </div>
+                    </Link>
+                    <Link href="#" className="block hover:text-gray-300 py-2">
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 bg-[#FF3F33] rounded-full p-2">
+                          <Image src='/jobIcon.svg' alt="Smart Jobs" width={16} height={16} />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-sm">Smart jobs</span>
+                          <span className="block text-xs text-gray-300 mt-1">AI job matching</span>
+                        </div>
+                      </div>
+                    </Link>
+                    <Link href="#" className="block hover:text-gray-300 py-2">
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 bg-[#191825] rounded-full p-2">
+                          <Image src='/databaseIcon.svg' alt="Database" width={16} height={16} />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-sm">Hyperlocal Database</span>
+                          <span className="block text-xs text-gray-300 mt-1">Local talent pools</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link href="#" className="block hover:text-gray-300 py-2 text-base font-medium">Enterprise</Link>
+              <Link href="#" className="block hover:text-gray-300 py-2 text-base font-medium">Blogs</Link>
+              <Link href="#" className="block hover:text-gray-300 py-2 text-base font-medium">Pricing</Link>
+              <Link href="#" className="block hover:text-gray-300 py-2 text-base font-medium flex items-center">
+                Looking for a job <MoveUpRight className='ml-1 w-4 h-4' />
+              </Link>
+              <Link href="#" className="block text-center border border-gray-400 rounded font-medium px-4 py-2 mt-4 hover:bg-gray-700 transition-colors">Contact us</Link>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
