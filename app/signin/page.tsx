@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Building2, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignInContent = () => {
   const [mobileNumber, setMobileNumber] = useState('');
@@ -12,20 +13,57 @@ const SignInContent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
+  const { login, isAuthenticated } = useAuth();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectionSource = searchParams.get('redirectionSource');
+  const redirectTo = searchParams.get('redirect') || '/dashboard';
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace(redirectTo);
+    }
+  }, [isAuthenticated, router, redirectTo]);
+
+  // Auto-fill mobile number from localStorage when component mounts
+  useEffect(() => {
+    const preFillMobile = localStorage.getItem('preFillMobile');
+    if (preFillMobile) {
+      setMobileNumber(preFillMobile);
+      // Clear the stored value after using it
+      localStorage.removeItem('preFillMobile');
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      if (isLogin) {
+        // Handle login
+        const success = await login(mobileNumber, password);
+        if (success) {
+          // Redirect to dashboard or redirect URL
+          router.replace(redirectTo);
+        } else {
+          setError('Invalid credentials. Please try again.');
+        }
+      } else {
+        // Handle signup - you can implement signup logic here
+        // For now, just show a message
+        setError('Signup functionality coming soon. Please use login.');
+      }
+    } catch (error) {
+      console.error('Authentication error:', error);
+      setError('An error occurred. Please try again.');
+    } finally {
       setIsLoading(false);
-      // Handle successful login/signup here
-      console.log('Form submitted:', { mobileNumber, password, isLogin });
-    }, 2000);
+    }
   };
 
   return (
@@ -75,6 +113,13 @@ const SignInContent = () => {
 
           {/* Form */}
           <div className="px-8 py-6">
+            {/* Error message */}
+            {error && (
+              <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
+                <p className="text-red-200 text-sm">{error}</p>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Mobile Number Input */}
               <div className="relative group">
