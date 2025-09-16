@@ -3,13 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MoveUpRight, Menu, X } from 'lucide-react';
+import { MoveUpRight, Menu, X, LogOut, User } from 'lucide-react';
 import SparkleAnimation from '../components/SparkleAnimation';
+import { useAuth } from '../contexts/AuthContext';
 // import rotbotIcon from '../icons/robotIcon.svg'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -17,6 +19,10 @@ const Header = () => {
 
   const toggleProductDropdown = () => {
     setIsProductDropdownOpen(!isProductDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -138,9 +144,29 @@ const Header = () => {
           </div>
           <div className="flex items-center space-x-2 sm:space-x-4">
             <Link href="#" className="hidden md:block hover:text-gray-300 border rounded font-medium px-3 lg:px-6 py-2 text-sm lg:text-base whitespace-nowrap">Contact us</Link>
-            <Link href="#" className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-3 sm:px-4 rounded text-sm lg:text-base whitespace-nowrap">
-              Login/Sign up
-            </Link>
+
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <Link
+                  href="/dashboard"
+                  className="hidden sm:flex items-center space-x-2 text-white hover:text-gray-300 text-sm lg:text-base"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Dashboard</span>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-3 sm:px-4 rounded text-sm lg:text-base whitespace-nowrap transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </div>
+            ) : (
+              <Link href="/signin" className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-3 sm:px-4 rounded text-sm lg:text-base whitespace-nowrap">
+                Login/Sign up
+              </Link>
+            )}
             <button
               onClick={toggleMobileMenu}
               className="lg:hidden text-white p-2 hover:bg-gray-700 rounded transition-colors"
