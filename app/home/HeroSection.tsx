@@ -1,7 +1,7 @@
 'use client';
 
 // components/HeroSection.js
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CirclePlay, Building2 } from 'lucide-react';
@@ -9,6 +9,21 @@ import Header from './header';
 
 
 const HeroSection = () => {
+  const [mobileNumber, setMobileNumber] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (mobileNumber) {
+      // Store mobile number in localStorage
+      localStorage.setItem('preFillMobile', mobileNumber);
+      // Open signin page in new tab
+      window.open('/signin/?redirectionSource=Homepage-login', '_blank');
+
+      // Clear the form after submission
+      setMobileNumber('');
+    }
+  };
+
   return (
     <section className="bg-purple-gradient text-black pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-8 lg:px-16 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("https://framerusercontent.com/images/ibJ0g0Ir3S8FokflvVvOkdCQo.png?scale-down-to=2048&width=2880&height=1302")' }}>
       <Header />
@@ -71,13 +86,15 @@ const HeroSection = () => {
                 <p className="text-white/70 text-sm">Join thousands of employers</p>
               </div>
 
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="relative group">
                   <input
                     className="w-full px-6 py-4 bg-white border border-gray-200 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/30 transition-all duration-300 peer"
                     id="mobile"
                     placeholder="Enter your mobile number"
                     type="text"
+                    value={mobileNumber}
+                    onChange={(e) => setMobileNumber(e.target.value)}
                   />
                   <label className="absolute left-6 -top-2 text-xs font-medium text-white/80 bg-gradient-to-r from-purple-400 to-teal-400 px-2 rounded-full" htmlFor="mobile">
                     Mobile Number
@@ -139,7 +156,10 @@ const HeroSection = () => {
                 </h2>
                 <p className="text-white/70 text-sm mb-4 sm:mb-6">Join thousands of employers</p>
                 <button
-                  onClick={() => window.open('/signin/?redirectionSource=Homepage-login', '_blank')}
+                  onClick={() => {
+                    localStorage.setItem('preFillMobile', '');
+                    window.open('/signin/?redirectionSource=Homepage-login', '_blank');
+                  }}
                   className="w-full relative overflow-hidden text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:cursor-pointer transition-all duration-300 group"
                   style={{ backgroundColor: '#1f8268' }}
                 >
